@@ -1,0 +1,16 @@
+<section id="home">
+	<div class="container">
+		<div class="row">
+			<div class="card col s4" ng-repeat="serie in $ctrl.content">
+				<a ui-sref="app.content({id:serie._id})">
+					<h4 ng-style="{color: serie.active ? '' : 'red'}">{{serie.title}}</h4>
+				</a>
+			</div>
+			<div class="card col s4">
+				<a ng-click="$ctrl.newSerie($ctrl.currentUser)">
+					<h4 class="center">+</h4>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

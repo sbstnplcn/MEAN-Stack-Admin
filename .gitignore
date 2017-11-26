@@ -1,0 +1,6 @@
+node_modules
+.DS_Store
+public
+config/dev.js
+tmp/*.jpg
+tmp/*.png

@@ -1,0 +1,38 @@
+<!-- Register -->
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col s12">
+				<a ui-sref="app.prelogin">
+						<button class="btn btn-info">Back</button>
+					</a>
+			</div>
+		</div>
+		<form name="newUserForm">
+			<div class="row center-align">
+				<h3>Register</h3>
+				<div class="col s12">
+					<div class="input-field col s12">
+						<input id="Name" type="text" ng-model="$ctrl.newUser.firstName" required>
+						<label for="Name">Name</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="Email" type="text" ng-model="$ctrl.newUser.email" required>
+						<label for="Email">Email</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="Password" type="password" ng-model="$ctrl.newUser.password" required>
+						<label for="Password">Password</label>
+					</div>
+				</div>
+				<div class="col s12">
+					<button class="btn btn-info white" ng-disabled="newUserForm.$invalid">
+				  <a ng-click="$ctrl.add($ctrl.newUser)">
+					  Create Account
+				  </a>
+			  </button>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>

@@ -1,0 +1,14 @@
+# Default application configuration that all configurations inherit from.
+
+linters:
+  Indentation:
+    enabled: true
+    allow_non_nested_indentation: false
+    character: tab # or 'space'
+    width: 1
+
+  SelectorDepth:
+    max_depth: 10
+
+  NestingDepth:
+    max_depth: 10

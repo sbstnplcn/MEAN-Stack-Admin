@@ -1,0 +1,111 @@
+content {
+    .container {
+        .row {
+            .content-card {
+                padding: 1em;
+                .work-container {
+                    background-color: #eafffd;
+                    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+                    margin: 1em 0;
+                    padding: 1em;
+                }
+                .content-work-container {
+                    width: 95%;
+                }
+            }
+            .new-work {
+                height: 50px;
+                width: 50px;
+                border-radius: 25px;
+                background-color: rgb(95, 95, 95);
+                color: white;
+                margin: 1em 0;
+                .fa {
+                    align-items: center;
+                    display: flex;
+                    font-size: 30px;
+                    height: 50px;
+                    justify-content: center;
+                }
+            }
+            .new-works {
+                height: 50px;
+                width: 50px;
+                border-radius: 25px;
+                background-color: rgb(95, 95, 95);
+                color: white;
+                margin: 1em 0;
+                .fa {
+                    align-items: center;
+                    display: flex;
+                    font-size: 30px;
+                    height: 50px;
+                    justify-content: center;
+                }
+            }
+            .delete-work {
+                font-size: 24px;
+                position: absolute;
+                right: 3.5em;
+                .fa {
+                    background-color: white;
+                    width: 50px;
+                    border-radius: 25px;
+                    align-items: center;
+                    display: flex;
+                    height: 50px;
+                    justify-content: center;
+                    margin: .5em;
+                }
+            }
+            .delete-works {
+                font-size: 24px;
+                position: absolute;
+                right: .5em;
+                .fa {
+                    background-color: white;
+                    width: 50px;
+                    border-radius: 25px;
+                    align-items: center;
+                    display: flex;
+                    height: 50px;
+                    justify-content: center;
+                    margin: .5em;
+                }
+            }
+            .delete-serie {
+                align-items: center;
+                display: flex;
+                font-size: 24px;
+                height: 50px;
+                justify-content: center;
+                position: absolute;
+                right: -77px;
+                top: -7px;
+            }
+        }
+    }
+    .edit {
+        bottom: 10vh;
+        position: fixed;
+        right: 0;
+        .fa {
+            align-items: center;
+            background-color: #009688;
+            border-radius: 25px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            font-size: 25px;
+            height: 2em;
+            justify-content: center;
+            margin: .5em;
+            width: 2em;
+        }
+    }
+    .tabs {
+        position: sticky;
+        top: 0px;
+        z-index: 9999999;
+    }
+}

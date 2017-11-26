@@ -1,0 +1,319 @@
+<!-- User Page -->
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="edit">
+					<div ng-if="!$ctrl.editMode">
+						<i class="fa fa-pencil" tooltipped data-position="left" data-delay="50" data-tooltip="Edit" aria-hidden="true" ng-click="$ctrl.edit($ctrl.user)"></i>
+					</div>
+					<div ng-if="$ctrl.editMode">
+						<i class="fa fa-trash-o red" tooltipped data-position="left" data-delay="50" data-tooltip="Delete" aria-hidden="true" ng-click="$ctrl.delete($ctrl.user)"></i>
+						<i class="fa fa-times" tooltipped data-position="left" data-delay="50" data-tooltip="Cancel" aria-hidden="true" ng-click="$ctrl.cancel($ctrl.user)"></i>
+						<i class="fa fa-floppy-o green" tooltipped data-position="left" data-delay="50" data-tooltip="Save" aria-hidden="true" ng-click="$ctrl.edit($ctrl.user)"></i>
+					</div>
+				</div>
+				<div ng-if="!$ctrl.editMode">
+					<h3 class="center-align">Account</h3>
+					<div class="row">
+
+						<h5>Infos</h5>
+						<div class="card-panel col s6 valign-wrapper">
+							<div class="col s2">
+								<i class="fa fa-user prefix" aria-hidden="true"></i>
+							</div>
+							<div class="col s10">
+								<label for="">FirstName</label>
+								<p>{{$ctrl.user.firstName}}</p>
+							</div>
+						</div>
+						<div class="card-panel col s6 valign-wrapper">
+							<div class="col s2">
+								<i class="fa fa-user prefix" aria-hidden="true"></i>
+							</div>
+							<div class="col s10">
+								<label for="">LastName</label>
+								<p>{{$ctrl.user.lastName}}</p>
+							</div>
+						</div>
+						<div class="card-panel col s6 valign-wrapper">
+							<div class="col s2">
+								<i class="fa fa-globe prefix" aria-hidden="true"></i>
+							</div>
+							<div class="col s10">
+								<label for="">Domain</label>
+								<p>{{$ctrl.user.domain}}</p>
+							</div>
+						</div>
+						<div class="card-panel col s6 valign-wrapper">
+							<div class="col s2">
+								<i class="fa fa-envelope-o prefix" aria-hidden="true"></i>
+							</div>
+							<div class="col s10">
+								<label for="">Email</label>
+								<p>{{$ctrl.user.email}}</p>
+							</div>
+						</div>
+						<div class="card-panel col s6 valign-wrapper">
+							<div class="col s2">
+								<i class="fa fa-phone prefix" aria-hidden="true"></i>
+							</div>
+							<div class="col s10">
+								<label for="">Phone</label>
+								<p>{{$ctrl.user.phone}}</p>
+							</div>
+						</div>
+						<div class="card-panel col s6 valign-wrapper">
+							<div class="col s2">
+								<i class="fa fa-lock prefix" aria-hidden="true"></i>
+							</div>
+							<div class="col s10">
+								<label for="">Password</label>
+								<p>Click on Edit to change your Password</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<h5>Social</h5>
+						<div class="card-panel col s6 valign-wrapper">
+							<div class="col s2">
+								<i class="fa fa-facebook prefix" aria-hidden="true"></i>
+							</div>
+							<div class="col s10">
+								<label for="">Facebook</label>
+								<p>{{$ctrl.user.social.facebook}}</p>
+							</div>
+						</div>
+						<div class="card-panel col s6 valign-wrapper">
+							<div class="col s2">
+								<i class="fa fa-instagram prefix" aria-hidden="true"></i>
+							</div>
+							<div class="col s10">
+								<label for="">Instagram</label>
+								<p>{{$ctrl.user.social.instagram}}</p>
+							</div>
+						</div>
+						<div class="card-panel col s6 valign-wrapper">
+							<div class="col s2">
+								<i class="fa fa-linkedin prefix" aria-hidden="true"></i>
+							</div>
+							<div class="col s10">
+								<label for="">Linkedin</label>
+								<p>{{$ctrl.user.social.linkedin}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="row card">
+						<div class="tabs card">
+							<ul tabs reload="allTabContentLoaded">
+								<li class="tab col s3"><a class="active" ng-click="$ctrl.i18n = 'fr'">FR</a></li>
+								<li class="tab col s3"><a ng-click="$ctrl.i18n = 'en'">EN</a></li>
+								<li class="tab col s3"><a ng-click="$ctrl.i18n = 'it'">IT</a></li>
+								<li class="tab col s3"><a ng-click="$ctrl.i18n = 'es'">ES</a></li>
+							</ul>
+						</div>
+						<div class="col s12">
+							<h5>Contact Text</h5>
+							<div class="card-panel col s12 valign-wrapper">
+								<div class="col s2">
+									<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+								</div>
+								<div class="col s10">
+									<label for="">Contact Text</label>
+									<p>{{$ctrl.i18n | uppercase}} : {{$ctrl.user.contactText[$ctrl.i18n]}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="col s12">
+							<h5>Description Text (for sidebar)</h5>
+							<div class="card-panel col s12 valign-wrapper">
+								<div class="col s2">
+									<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+								</div>
+								<div class="col s10">
+									<label for="">Description Text</label>
+									<p>{{$ctrl.i18n | uppercase}} : {{$ctrl.user.descText[$ctrl.i18n]}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="col s12">
+							<h5>Sidebar Translations</h5>
+							<div class="card-panel col s12 valign-wrapper">
+								<div class="col s2">
+									<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+								</div>
+								<div class="col s10">
+									<label for="">"Creations"</label>
+									<p>{{$ctrl.i18n | uppercase}} : {{$ctrl.user.params.creations[$ctrl.i18n]}}</p>
+								</div>
+								<div class="col s2">
+									<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+								</div>
+								<div class="col s10">
+									<label for="">"Contact"</label>
+									<p>{{$ctrl.i18n | uppercase}} : {{$ctrl.user.params.contact[$ctrl.i18n]}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="col s12">
+							<h5>Retail</h5>
+							<div class="card-panel col s12 valign-wrapper">
+								<div class="col s2">
+									<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+								</div>
+								<div class="col s10">
+									<label for="">Retail Title (for sidebar and title in website)</label>
+									<p>{{$ctrl.i18n | uppercase}} : {{$ctrl.user.retail.title[$ctrl.i18n]}}</p>
+									<div class="card" ng-repeat="place in $ctrl.user.retail.places">
+										<img ng-src="{{place.img}}" class="responsive-img">
+										<p>{{place.title}}</p>
+										<p>{{place.desc}}</p>
+										<p>{{place.info}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+				<!-- Edit Mode -->
+				<div ng-if="$ctrl.editMode">
+					<div class="row">
+						<h5>Infos :</h5>
+						<div class="input-field col s6">
+							<i class="fa fa-user prefix" aria-hidden="true"></i>
+							<input type="text" name="FirstName" id="icon_prefix" class="validate" ng-model="$ctrl.user.firstName"></input>
+							<label for="icon_prefix">FirstName</label>
+						</div>
+						<div class="input-field col s6">
+							<i class="fa fa-user prefix" aria-hidden="true"></i>
+							<input type="text" name="LastName" id="icon_prefix" class="validate" ng-model="$ctrl.user.lastName"></input>
+							<label for="icon_prefix">LastName</label>
+						</div>
+						<div class="input-field col s6">
+							<i class="fa fa-globe prefix" aria-hidden="true"></i>
+							<input type="text" name="Domain" id="icon_prefix" class="validate" ng-model="$ctrl.user.domain"></input>
+							<label for="icon_prefix">Domain (without "www" and ".com"):</label>
+						</div>
+						<div class="input-field col s6">
+							<i class="fa fa-envelope-o prefix" aria-hidden="true"></i>
+							<input type="text" name="email" id="icon_prefix" class="validate" ng-model="$ctrl.user.email"></input>
+							<label for="icon_prefix">Email</label>
+						</div>
+						<div class="input-field col s6">
+							<i class="fa fa-phone prefix" aria-hidden="true"></i>
+							<input type="tel" id="icon_prefix" class="validate" ng-model="$ctrl.user.phone"></input>
+							<label for="icon_prefix">Phone</label>
+						</div>
+						<div class="input-field col s6">
+							<i class="fa fa-lock prefix" aria-hidden="true"></i>
+							<input type="password" id="icon_prefix" class="validate" ng-model="$ctrl.user.newPassword"></input>
+							<label for="icon_prefix">Password</label>
+						</div>
+					</div>
+					<div class="row">
+						<h5>Social :</h5>
+						<div class="input-field col s6">
+							<i class="fa fa-facebook prefix" aria-hidden="true"></i>
+							<input id="icon_prefix" class="validate" type="text" ng-model="$ctrl.user.social.facebook">
+							<label for="icon_prefix">Facebook</label>
+						</div>
+						<div class="input-field col s6">
+							<i class="fa fa-instagram prefix" aria-hidden="true"></i>
+							<input id="icon_prefix" type="text" class="validate" ng-model="$ctrl.user.social.instagram">
+							<label for="icon_prefix">Instagram</label>
+						</div>
+						<div class="input-field col s6">
+							<i class="fa fa-linkedin prefix" aria-hidden="true"></i>
+							<input id="icon_prefix" type="text" class="validate" ng-model="$ctrl.user.social.linkedin">
+							<label for="icon_prefix">Linkedin</label>
+						</div>
+					</div>
+					<div class="row card">
+						<div class="tabs card">
+							<ul tabs reload="allTabContentLoaded">
+								<li class="tab col s3"><a class="active" ng-click="$ctrl.i18n = 'fr'">FR</a></li>
+								<li class="tab col s3"><a ng-click="$ctrl.i18n = 'en'">EN</a></li>
+								<li class="tab col s3"><a ng-click="$ctrl.i18n = 'it'">IT</a></li>
+								<li class="tab col s3"><a ng-click="$ctrl.i18n = 'es'">ES</a></li>
+							</ul>
+						</div>
+						<div class="col s12">
+							<h5>Contact Text</h5>
+							<div class="input-field col s12">
+								<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+								<textarea id="icon_prefix" type="text" class="materialize-textarea" ng-model="$ctrl.user.contactText[$ctrl.i18n]"></textarea>
+								<label for="icon_prefix">Contact Text {{$ctrl.i18n | uppercase}} :</label>
+							</div>
+						</div>
+						<div class="col s12">
+							<h5>Description Text</h5>
+							<div class="input-field col s12">
+								<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+								<textarea id="icon_prefix" type="text" class="materialize-textarea" ng-model="$ctrl.user.descText[$ctrl.i18n]"></textarea>
+								<label for="icon_prefix">Description Text {{$ctrl.i18n | uppercase}} :</label>
+							</div>
+						</div>
+						<div class="col s12">
+							<h5>Sidebar Translations</h5>
+							<div class="input-field col s12">
+								<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+								<input id="icon_prefix" type="text" ng-model="$ctrl.user.params.creations[$ctrl.i18n]">
+								<label for="icon_prefix">"Créations" {{$ctrl.i18n | uppercase}} :</label>
+							</div>
+							<div class="input-field col s12">
+								<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+								<input id="icon_prefix" type="text" ng-model="$ctrl.user.params.contact[$ctrl.i18n]">
+								<label for="icon_prefix">"Contact" {{$ctrl.i18n | uppercase}} :</label>
+							</div>
+						</div>
+						<div class="col s12">
+							<h5>Retail</h5>
+							<div class="input-field col s6">
+								<i class="fa fa-shopping-bag prefix" aria-hidden="true"></i>
+								<input id="icon_prefix" type="text" class="validate" ng-model="$ctrl.user.retail.title[$ctrl.i18n]">
+								<label for="icon_prefix">Title {{$ctrl.i18n | uppercase}} :</label>
+							</div>
+							<div class="col s12">
+								<div class="row" ng-repeat="place in $ctrl.user.retail.places track by $index">
+									<div class="card col s11">
+										<div class="input-field col s12">
+											<p>Image</p>
+											<img class="responsive-img" ng-src="{{place.img}}" alt="">
+											<file-upload ng-model="$ctrl.newPlaceImg[$index]"></file-upload>
+											<a class="btn" ng-class="$ctrl.loader ? 'disabled' : ''" ng-click="$ctrl.uploadPlaceImage($ctrl.newPlaceImg[$index], place, $index)">{{$ctrl.loader ? 'Uploading' : 'Upload'}}</a>
+										</div>
+										<div class="input-field col s6">
+											<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+											<input id="icon_prefix" type="text" ng-model="place.title">
+											<label for="icon_prefix">Title :</label>
+										</div>
+										<div class="input-field col s6">
+											<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+											<input id="icon_prefix" type="text" ng-model="place.desc">
+											<label for="icon_prefix">Address :</label>
+										</div>
+										<div class="input-field col s6">
+											<i class="fa fa-file-text-o prefix" aria-hidden="true"></i>
+											<textarea id="icon_prefix" type="text" class="materialize-textarea" ng-model="place.info"></textarea>
+											<label for="icon_prefix">Infos :</label>
+										</div>
+									</div>
+									<div class="edit-place">
+										<i class="fa fa-trash-o red white-text" tooltipped data-position="left" data-delay="50" data-tooltip="Delete {{place.title}}" aria-hidden="true" ng-click="$ctrl.deletePlace($ctrl.user.retail.places, $index)"></i>
+										<i class="fa fa-arrow-up z-depth-2" tooltipped data-position="left" data-delay="50" data-tooltip="Change position" aria-hidden="true" ng-if="$index !== 0" ng-click="$ctrl.changePosition($ctrl.user.retail.places, place, $index, -1)"></i>
+										<i class="fa fa-arrow-down z-depth-2" tooltipped data-position="left" data-delay="50" data-tooltip="Change position" aria-hidden="true" ng-if="$index !== $ctrl.user.retail.places.length - 1" ng-click="$ctrl.changePosition($ctrl.user.retail.places, place, $index, +1)"></i>			
+									</div>
+								</div>
+							</div>
+							<div class="col s12">
+								<div class="new-retail">
+									<i class="fa fa-plus" aria-hidden="true" ng-click="$ctrl.addRetail($ctrl.user.retail)"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	

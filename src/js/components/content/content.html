@@ -1,0 +1,138 @@
+<section>
+	<div class="container">
+		<div class="edit">
+			<div ng-if="!$ctrl.editMode">
+				<i class="fa fa-pencil" tooltipped data-position="left" data-delay="50" data-tooltip="Edit" aria-hidden="true" ng-click="$ctrl.edit($ctrl.currentContent)"></i>
+			</div>
+			<div ng-if="$ctrl.editMode">
+				<i class="fa fa-trash-o red" tooltipped data-position="left" data-delay="50" data-tooltip="Delete Serie" aria-hidden="true" ng-click="$ctrl.delete($ctrl.currentContent)"></i>
+				<i class="fa fa-times" tooltipped data-position="left" data-delay="50" data-tooltip="Cancel" aria-hidden="true" ng-click="$ctrl.cancel($ctrl.currentContent)"></i>
+				<i class="fa fa-floppy-o green" tooltipped data-position="left" data-delay="50" data-tooltip="Save" aria-hidden="true" ng-click="$ctrl.edit($ctrl.currentContent)"></i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<div class="card col s12 content-card" ng-if="!$ctrl.editMode">
+					<h4>{{$ctrl.currentContent.title}}</h4>
+					<p ng-style="{color: $ctrl.currentContent.active ? '' : 'red'}">{{$ctrl.currentContent.active ? 'Active' : 'Inactive' }}</p>
+					<div class="tabs card">
+						<ul tabs reload="allTabContentLoaded">
+							<li class="tab col s3"><a class="active" ng-click="$ctrl.i18n = 'fr'">FR</a></li>
+							<li class="tab col s3"><a ng-click="$ctrl.i18n = 'en'">EN</a></li>
+							<li class="tab col s3"><a ng-click="$ctrl.i18n = 'it'">IT</a></li>
+							<li class="tab col s3"><a ng-click="$ctrl.i18n = 'es'">ES</a></li>
+						</ul>
+					</div>
+					<div class="work-container" ng-repeat="works in $ctrl.currentContent.works track by $index">
+						<h5>{{$index + 1}}. Title : {{works.title}}</h5>
+						<p>Description {{$ctrl.i18n | uppercase}} : </p>
+						<p>{{works.description[$ctrl.i18n]}}</p>
+						<p>Spotlight image :</p>
+						<img class="responsive-img" ng-src="{{works.img}}" alt="">
+						<div class="container content-work-container">
+							<div class="row">
+								<div ng-repeat="work in works.works track by $index">
+									<div class="card col s6">
+										<p>Category {{$ctrl.i18n | uppercase}} : <span>{{work.category[$ctrl.i18n]}}</span></p>
+										<p>Description {{$ctrl.i18n | uppercase}} : </p>
+										<p>{{work.description[$ctrl.i18n]}}</p>
+										<p>Image :</p>
+										<img class="responsive-img" ng-src="{{work.img}}" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Edit Mode -->
+
+			<div class="card col s11 content-card" ng-if="$ctrl.editMode">
+				<div class="input-field col s11">
+					<input type="text" class="validate" ng-model="$ctrl.currentContent.title">
+					<label>Serie Title (must be unique):</label>
+				</div>
+				<div class="col s11">
+					<input type="checkbox" ng-model="$ctrl.currentContent.active" id="checkbox1">
+					<label for="checkbox1">{{$ctrl.currentContent.active ? 'Active' : 'Inactive' }}</label>
+				</div>
+				<div class="tabs card">
+					<ul tabs reload="allTabContentLoaded">
+						<li class="tab col s3"><a class="active" ng-click="$ctrl.i18n = 'fr'">FR</a></li>
+						<li class="tab col s3"><a ng-click="$ctrl.i18n = 'en'">EN</a></li>
+						<li class="tab col s3"><a ng-click="$ctrl.i18n = 'it'">IT</a></li>
+						<li class="tab col s3"><a ng-click="$ctrl.i18n = 'es'">ES</a></li>
+					</ul>
+				</div>
+				<div class="work-container col s11" ng-repeat="works in $ctrl.currentContent.works track by $index">
+					<div class="input-field col s11">
+						<input type="text" class="validate" ng-model="works.title">
+						<label>Title</label>
+					</div>
+					
+					<input type="text" style="visibility: hidden;" ng-model="works._id" 
+					ng-init="works._id = works.title.toLowerCase().split(' ').join('-')">
+
+					<div class="input-field col s11">
+						<textarea type="text" class="validate materialize-textarea" ng-model="works.description[$ctrl.i18n]"></textarea>
+						<label>Description {{$ctrl.i18n | uppercase}}</label>
+					</div>
+
+					<div class="input-field col s11">
+						<p>Spotlight image</p>
+						<img class="responsive-img" ng-src="{{works.img}}" alt="">
+						<file-upload ng-model="$ctrl.newSpotlightImg[$index]"></file-upload>
+						<a class="btn" ng-class="$ctrl.loader ? 'disabled' : ''" ng-click="$ctrl.uploadSpotlightImage($ctrl.newSpotlightImg[$index], works, $index)">{{$ctrl.loader ? 'Uploading' : 'Upload'}}</a>
+					</div>
+					<div class="delete-works">
+						<i class="fa fa-trash-o red white-text z-depth-2" tooltipped data-position="right" data-delay="50" data-tooltip="Delete {{works.title}}" aria-hidden="true" ng-click="$ctrl.deleteWorks($ctrl.currentContent.works, $index)"></i>
+						<i class="fa fa-arrow-up z-depth-2" tooltipped data-position="left" data-delay="50" data-tooltip="Change position" aria-hidden="true" ng-if="$index !== 0" ng-click="$ctrl.changePosition($ctrl.currentContent.works, works, $index, -1)"></i>
+						<i class="fa fa-arrow-down z-depth-2" tooltipped data-position="left" data-delay="50" data-tooltip="Change position" aria-hidden="true" ng-if="$index !== $ctrl.currentContent.works.length - 1" ng-click="$ctrl.changePosition($ctrl.currentContent.works, works, $index, +1)"></i>		
+					</div>
+
+
+					<div class="container content-work-container">
+						<div class="row">
+							<div class="col s11" ng-repeat="work in works.works track by $index">
+								<div class="card col s12">
+									<div class="input-field col s12">
+										<input type="text" class="validate" ng-model="work.category[$ctrl.i18n]">
+										<label>Category {{$ctrl.i18n | uppercase}}</label>
+									</div>
+									<div class="input-field col s12">
+										<textarea type="text" class="validate materialize-textarea" ng-model="work.description[$ctrl.i18n]"></textarea>
+										<label>Description {{$ctrl.i18n | uppercase}}</label>
+									</div>
+
+									<div class="input-field col s12">
+										<p>Image</p>
+										<img class="responsive-img" ng-src="{{work.img}}" alt="">
+										<file-upload ng-model="$ctrl.newWorkImg[$parent.$index][$index]"></file-upload>
+										<a class="btn" ng-class="$ctrl.loader ? 'disabled' : ''" ng-click="$ctrl.uploadWorkImage($ctrl.newWorkImg[$parent.$index][$index], work, $parent.$index, $index)">{{$ctrl.loader ? 'Uploading' : 'Upload'}}</a>
+									</div>
+
+								</div>
+								<div class="delete-work">
+									<i class="fa fa-trash-o red white-text" tooltipped data-position="right" data-delay="50" data-tooltip="Delete {{work.category}}" aria-hidden="true" ng-click="$ctrl.deleteWork(works, $index)"></i>
+									<i class="fa fa-arrow-up z-depth-2" tooltipped data-position="left" data-delay="50" data-tooltip="Change position" aria-hidden="true" ng-if="$index !== 0" ng-click="$ctrl.changePosition(works.works, work, $index, -1)"></i>
+									<i class="fa fa-arrow-down z-depth-2" tooltipped data-position="left" data-delay="50" data-tooltip="Change position" aria-hidden="true" ng-if="$index !== works.works.length - 1" ng-click="$ctrl.changePosition(works.works, work, $index, +1)"></i>			
+								</div>
+							</div>
+							<div class="col s2">
+								<div class="new-work">
+									<i class="fa fa-plus" aria-hidden="true" ng-click="$ctrl.addWork(works)"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col s12">
+					<div class="new-work">
+						<i class="fa fa-plus" aria-hidden="true" ng-click="$ctrl.addWorks($ctrl.currentContent.works)"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
